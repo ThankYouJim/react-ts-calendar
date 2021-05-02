@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { v4 } from 'uuid';
+import Taskbox from './components/Taskbox';
+import { Task } from './Validator';
 
-function App() {
+import Container from '@material-ui/core/Container';
+
+const App: React.FC = () => {
+  const initialState: Task[] = [{
+    id: v4(),
+    value: 'abc',
+    createdDateTime: new Date()
+  }, {
+    id: v4(),
+    value: '123',
+    createdDateTime: new Date()
+  }];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container style={{ backgroundColor: 'white', padding: '1.5rem' }} maxWidth="md">
+      <h1>Have I done...?</h1>
+      <Taskbox existingTasks={initialState} />
+    </Container>
   );
 }
 
