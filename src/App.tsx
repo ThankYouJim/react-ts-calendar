@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { v4 } from 'uuid';
 import Taskbox from './components/Taskbox';
 import { Task } from './Validator';
 
 import Container from '@material-ui/core/Container';
+import { FormControlLabel, Switch } from '@material-ui/core';
+import Calendar from './components/Calendar';
 
 const App: React.FC = () => {
+  const [showCalendar, setShowCalender] = useState<boolean>(true);
   const initialState: Task[] = [{
     id: v4(),
-    value: 'abc',
+    value: 'go to the gym',
     createdDateTime: new Date()
   }, {
     id: v4(),
-    value: '123',
+    value: 'take meds',
     createdDateTime: new Date()
   }];
 
   return (
     <Container style={{ backgroundColor: 'white', padding: '1.5rem' }} maxWidth="md">
-      <h1>Have I done...?</h1>
-      <Taskbox existingTasks={initialState} />
+      <FormControlLabel
+        control={<Switch checked={showCalendar} onChange={() => setShowCalender(!showCalendar)} />}
+        label="Calendar Mode"
+      />
+
+      {showCalendar ? <Calendar existingTasks={initialState} /> : <Taskbox existingTasks={initialState} />}
     </Container>
   );
 }

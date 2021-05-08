@@ -12,7 +12,7 @@ interface Props {
 const TaskItem: React.FC<Props> = ({ task, index, onDelete }: Props) => {
   return (
     <ListItem key={index} style={{ backgroundColor: 'lightgray', borderRadius: '4px', marginBottom: '.25rem' }}>
-      <ListItemText primary={task.value} secondary={task.createdDateTime.toLocaleString()}></ListItemText>
+      <ListItemText primary={task.value}></ListItemText>
       <IconButton color="secondary" onClick={() => onDelete(task.id)} ><CloseIcon /></IconButton>
     </ListItem>
   )

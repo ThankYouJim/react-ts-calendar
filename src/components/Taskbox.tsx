@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { v4 } from 'uuid';
 import { Task } from '../Validator';
-
 import { List, TextField, IconButton } from '@material-ui/core/';
 import AddIcon from '@material-ui/icons/Add';
 import TaskItem from './TaskItem';
+import TaskboxHeader from './TaskboxHeader';
 
 interface Props {
   existingTasks: Task[]
@@ -27,15 +27,26 @@ const Taskbox: React.FC<Props> = ({ existingTasks }: Props) => {
     setTasks([...tasks, newTask]);
   }
 
+  useEffect(() => {
+    console.log(tasks.length);
+  }, [tasks])
 
   const items = tasks.map((task, index) => (<TaskItem key={task.id} task={task} index={index} onDelete={handleDelete} />))
   return (
     <>
-      <List>
-        {items}
-      </List>
-      <TextField label="New Task" value={value} variant="outlined" onChange={(event) => setNewValue(event.target.value)}></TextField>
-      <IconButton onClick={() => handleAdd(value)}><AddIcon /></IconButton>
+      <TaskboxHeader total={tasks.length} />
+      {tasks.length > 0 ? (
+        <List>
+          {items}
+        </List>
+      )
+        : <div>Nothing here!</div>
+      }
+      <div style={{ display: 'flex' }}>
+
+        <TextField fullWidth label="New Task" value={value} variant="outlined" onChange={(event) => setNewValue(event.target.value)}></TextField>
+        <IconButton onClick={() => handleAdd(value)}><AddIcon /></IconButton>
+      </div>
     </>
   )
 }
