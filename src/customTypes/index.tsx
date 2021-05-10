@@ -1,15 +1,15 @@
 export type Task = {
   id: string,
   value: string,
-  createdDateTime: Date
-}
+  createdDateTime: Date,
+};
 
 export type TaskFrequencyEntry = {
   taskId: string,
-  frequency: number
-}
+  frequency: number,
+};
 
 export type Day = {
   date: Date,
-  tasks: Set<string>
-}
+  tasks: Set<string>,
+};

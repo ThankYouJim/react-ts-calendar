@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { v4 } from 'uuid';
-import { Task } from '../Validator';
+import { Task } from 'customTypes';
 import { List, TextField, IconButton } from '@material-ui/core/';
 import AddIcon from '@material-ui/icons/Add';
 import TaskItem from './TaskItem';

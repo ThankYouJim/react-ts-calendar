@@ -1,7 +1,7 @@
 import React from 'react'
 import { ListItem, ListItemText, IconButton } from '@material-ui/core/';
 import CloseIcon from '@material-ui/icons/Close';
-import { Task } from '../Validator';
+import { Task } from 'customTypes';
 
 interface Props {
   task: Task,
