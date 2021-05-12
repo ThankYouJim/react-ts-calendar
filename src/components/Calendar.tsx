@@ -12,8 +12,8 @@ interface Props {
   existingTasks: Task[],
 }
 
-const KEY_LEFT = 37;
-const KEY_RIGHT = 39;
+const KEY_LEFT = '37';
+const KEY_RIGHT = '39';
 
 const Calendar: React.FC<Props> = ({ existingTasks }: Props) => {
   const ref = useRef(null);
@@ -21,19 +21,19 @@ const Calendar: React.FC<Props> = ({ existingTasks }: Props) => {
   const [today, setToday] = useState(new Date());
   const [date, setDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
 
-  useEffect(() => {
-    console.log(ref);
-    // ref.addEventListener('onkeydown', (event: Event) => {
-    //   switch (event.keyCode) {
-    //     case KEY_LEFT:
-    //       break;
-    //     case KEY_RIGHT:
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    // })
-  }, [])
+  const handleArrowKeys = (event: React.KeyboardEvent) => {
+    console.log('???', event);
+    // switch (keyEvent.key) {
+    //   case KEY_LEFT:
+    //     prev();
+    //     break;
+    //   case KEY_RIGHT:
+    //     next();
+    //     break;
+    //   default:
+    //     break;
+    // }
+  }
 
   const prev = () => {
     switch (mode) {
@@ -74,7 +74,7 @@ const Calendar: React.FC<Props> = ({ existingTasks }: Props) => {
       </IconButton>
 
       {/* hack to assign ref */}
-      <Box {...{ ref: ref, flexGrow: 1 }}>
+      <Box flexGrow={1}>
         {/* day/taskbox */}
         {/* week */}
         {/* month */}
